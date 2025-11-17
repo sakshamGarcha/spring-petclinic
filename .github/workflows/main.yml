@@ -1,7 +1,7 @@
 name: CI / CD – Build and Deploy to Azure
 
 env:
-  AZURE_WEBAPP_NAME: my-azure-webapp-name  
+  AZURE_WEBAPP_NAME: saksham-petclinic 
   JAVA_VERSION: '11'                        
 
 on:
@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
+          distribution: 'microsoft'
           cache: maven
 
       - name: Build with Maven
@@ -42,11 +42,14 @@ jobs:
     name: Deploy to Azure Web App
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: read
+      id-token: write
 
     environment:
       name: production
-      # Optionally expose the URL of your deployed web app:
-      url: ${{ steps.deploy-webapp.outputs.webapp-url }}
+      
+      
 
     steps:
       - name: Download build artifact
