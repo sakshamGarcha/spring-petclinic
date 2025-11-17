@@ -5,7 +5,7 @@ name: Build and deploy JAR app to Azure Web App - saanvik-petclinic
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
   workflow_dispatch:
 
@@ -60,4 +60,5 @@ jobs:
           app-name: 'saanvik-petclinic'
           slot-name: 'Production'
           package: '*.jar'
+
           
