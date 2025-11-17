@@ -5,7 +5,7 @@ name: Build and deploy JAR app to Azure Web App - saanvikit
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
   workflow_dispatch:
 
@@ -52,3 +52,4 @@ jobs:
           slot-name: 'Production'
           package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_711C05298589428486612E30ECBE763D }}
+
